@@ -1,4 +1,4 @@
-# rock-paper-scissors
+# rock_paper_scissors
 
 This project is a simple Rock Paper Scissors game built as part of The Odin Project. The main focus was to practice JavaScript fundamentals, including functions, loops, user input, and basic game logic.
 
