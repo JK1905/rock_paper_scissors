@@ -14,7 +14,7 @@ h1 {
   display: flex;
   justify-content: center;
   margin: 50px;
-  gap: 50px; /* spacing between images */
+  gap: 50px; 
 }
 
 #scoreboard, #notification {
@@ -24,11 +24,10 @@ h1 {
 }
 
 .choice {
-  width: 100px;   /* same width for all images */
-  height: 100px;  /* same height */
-  cursor: pointer; /* changes cursor on hover to indicate clickable */
+  width: 100px;   
+  height: 100px;  
+  cursor: pointer; 
   transition: transform 0.3s ease ;  /* smooth hover transition */
-  transform: rotate(-35deg);
 }
 
 .choice:hover {
@@ -38,14 +37,10 @@ h1 {
 #winner-notification {
   text-align: center;
   font-size: 2em;
-  /* color: gold; */
-  background: darkblue;
   padding: 10px 20px;
   border-radius: 10px;
-  /* box-shadow: 0 0 15px gold; */
   margin-top: 20px;
   transition: transform 0.3s ease, opacity 0.3s ease;
-  opacity: 0; /* hidden by default */
 }
 
 .winner-animate {

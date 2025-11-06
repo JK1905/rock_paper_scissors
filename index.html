@@ -9,11 +9,16 @@
 <body>
     <h1>Rock-Paper-Scissors</h1>
 
-    <button class="rock">rock</button>
-    <button class="paper">paper</button>
-    <button class="scissors">scissors</button>
+    <div id="container">
+        <img src="rock.png" class="choice rock">
+        <img src="paper.png" class="choice paper">
+        <img src="scissors.png" class="choice scissors">
+    </div>
+
+    <div id="scoreboard">Scores -> Human: 0 | Computer: 0</div>
+    <div id="notification"></div>
+    <div id="winner-notification"></div>
 
     <script src="game.js"></script>
-
 </body>
 </html>

@@ -1,63 +1,65 @@
-function getComputerChoice() {
-  const value = Math.floor(Math.random() * 3) + 1; 
-
-  if (value === 1) {
-    return "rock";
-  } else if (value === 2) {
-    return "paper";
-  } else if (value === 3) {
-    return "scissors";
-  }
-}
-
 let humanScore = 0;
 let computerScore = 0;
 
-function playRound(humanChoice, computerChoice) {
-if ((humanChoice === "rock" && computerChoice === "rock") || (humanChoice === "paper" && computerChoice === "paper") || (humanChoice === "scissors" && computerChoice === "scissors")) {
-    console.log("It's a tie!");
-} else if (humanChoice === "rock" && computerChoice === "paper") {
-    computerScore++;
-    console.log("You lose! Paper beats rock.");
-} else if (humanChoice === "rock" && computerChoice === "scissors") {
-    humanScore++;
-    console.log("You win! Rock beats scissors.");
-} else if (humanChoice === "paper" && computerChoice === "rock") {
-    humanScore++;
-    console.log("You win! Paper beats rock.");
-} else if (humanChoice === "paper" && computerChoice === "scissors") {
-    computerScore++;
-    console.log("You lose! Scissors beats paper.");
-} else if (humanChoice === "scissors" && computerChoice === "rock") {
-    computerScore++;
-    console.log("You lose! Rock beats scissors.");
-} else if (humanChoice === "scissors" && computerChoice === "paper") {
-    humanScore++;
-    console.log("You win! Scissors beats paper.");
-};
-if (humanScore === 5) {
-  console.log("You are the winner!");
-} else if (computerScore === 5) {
-  console.log("The computer wins!");
-};
-};
+const choices = document.querySelectorAll('.choice');
+const scoreboard = document.getElementById('scoreboard');
+const notification = document.getElementById('notification');
 
-const buttons = document.querySelectorAll("button");
-const results = document.createElement("div");
-results.style.background = "lightblue";
-results.style.border = "2px solid black";
-results.style.padding = "10px";
-results.style.marginTop = "10px";
-results.textContent = `Scores -> Human: ${humanScore}, Computer: ${computerScore}`;
-document.body.appendChild(results);
-
-buttons.forEach(button => {
-  button.addEventListener("click", event => {
-    const humanChoice = button.className;
+choices.forEach(img => {
+  img.addEventListener('click', () => {
+    const humanChoice = img.classList[1]; // rock/paper/scissors
     const computerChoice = getComputerChoice();
-    console.log(`Human chose: ${humanChoice}`);
-    console.log(`Computer chose: ${computerChoice}`);
     playRound(humanChoice, computerChoice);
-    results.textContent = `Scores -> Human: ${humanScore}, Computer: ${computerScore}`;
+    updateScoreDisplay();
+    checkWinner();
   });
 });
+
+function getComputerChoice() {
+  const value = Math.floor(Math.random() * 3) + 1;
+  return value === 1 ? 'rock' : value === 2 ? 'paper' : 'scissors';
+}
+
+function playRound(humanChoice, computerChoice) {
+  if (humanChoice === computerChoice) {
+    notification.textContent = "It's a tie!";
+  } else if (
+    (humanChoice === 'rock' && computerChoice === 'scissors') ||
+    (humanChoice === 'paper' && computerChoice === 'rock') ||
+    (humanChoice === 'scissors' && computerChoice === 'paper')
+  ) {
+    humanScore++;
+    notification.textContent = `You win this round! ${humanChoice} beats ${computerChoice}`;
+  } else {
+    computerScore++;
+    notification.textContent = `You lose this round! ${computerChoice} beats ${humanChoice}`;
+  }
+}
+
+function updateScoreDisplay() {
+  scoreboard.textContent = `Scores => Human: ${humanScore} | Computer: ${computerScore}`;
+}
+
+function checkWinner() {
+  if (humanScore === 5 || computerScore === 5) {
+    const winnerNotification = document.getElementById('winner-notification');
+    const winner = humanScore === 5 ? "Human" : "Computer";
+
+    // Show winner notification
+    winnerNotification.textContent = `${winner} wins the game!`;
+    winnerNotification.style.opacity = '1';           // make it visible
+    winnerNotification.classList.add('winner-animate');
+
+    // Reset scores AFTER showing notification
+    setTimeout(() => {
+    humanScore = 0;
+    computerScore = 0;
+    updateScoreDisplay();
+
+      // Hide winner notification
+    winnerNotification.classList.remove('winner-animate');
+    winnerNotification.style.opacity = '0';
+    winnerNotification.textContent = '';
+    }, 2000); // keeps it visible for 2 seconds
+  }
+}
