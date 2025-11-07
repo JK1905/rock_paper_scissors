@@ -1,4 +1,4 @@
-# rock-paper-scissors
+# rock_paper_scissors
 
 This project is a Rock Paper Scissors game built as part of The Odin Project. The main focus was to practice JavaScript fundamentals, DOM manipulation, event handling, and interactive web development.
 
@@ -32,6 +32,7 @@ The game contains:
 
 ## Notes
 
+<<<<<<< HEAD
 - Images are used as buttons for a more interactive experience.
 - Hovering over a choice slightly enlarges and rotates it to indicate it’s clickable.
 - The winner notification appears prominently and disappears after a short animation.
@@ -43,3 +44,8 @@ The game contains:
 - `rock.png`, `paper.png`, `scissors.png` – Image for the Rock choice
 
 These images are used as interactive buttons for making choices in the game.
+=======
+- The game is entirely console-based; no additional UI is implemented.
+- All input is case-insensitive.
+- Scores are tracked internally and displayed inside the console after each round.
+>>>>>>> b42891361ec5298b8ad7fb09f10f9764f4c744f1
